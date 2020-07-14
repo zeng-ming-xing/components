@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvs" height="80px" width="200px" style="border:1px solid " onclick="btn()"></canvas>
+    <script>
+        var a = show();
+
+        function btn() {
+            this.a = show()
+        }
+
+        function show() {
+            var num = [];
+            var canvas = document.getElementById('canvs');
+            var context = canvas.getContext("2d");
+            console.log(context);
+            var code = "A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0,q,w,e,r,t,y,u,i,o,p,a,s,d,f,g,h,j,k,l,z,x,c,v,b,n,m";
+            var newcode = code.split(",");
+            var len = newcode.length;
+            canvas.width = canvas.clientWidth;
+            canvas.height = canvas.clientHeight
+            for (var i = 0; i < 4; i++) {
+                var a = Math.floor(Math.random() * len);
+                var deg = Math.random() * 30 * Math.PI / 180;
+                var newa = newcode[a];
+                num.push(newa);
+                var x = 20 + i * 20 //文字每次绘制时的x坐标；
+                var y = 20 + Math.random() * 30;
+                context.font = "bold 23px 微软雅黑";
+                context.translate(x, y)
+                context.rotate(deg);
+                context.fillStyle = mathcolor();
+                context.fillText(newa, 0, 0);
+                context.rotate(-deg);
+                context.translate(-x, -y);
+            }
+            for (var i = 0; i <= 5; i++) { //验证码上显示线条
+                context.strokeStyle = mathcolor();
+                context.beginPath();
+                context.moveTo(Math.random() * canvas.clientWidth, Math.random() * canvas.clientWidth);
+                context.lineTo(Math.random() * canvas.clientHeight, Math.random() * canvas.clientHeight);
+                context.stroke();
+            }
+            for (var i = 0; i <= 30; i++) { //验证码上显示小点
+                context.strokeStyle = mathcolor();
+                context.beginPath();
+                var x = Math.random() * canvas.clientWidth;
+                var y = Math.random() * canvas.clientHeight;
+                context.moveTo(x, y);
+                context.lineTo(x + 1, y + 1);
+                context.stroke();
+            }
+            return num;
+        }
+        //得到随机颜色
+        function mathcolor() {
+            var a = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            var c = Math.floor(Math.random() * 255);
+            return `rgb(${a},${b},${c})`;
+
+        }
+    </script>
+</body>
+
+</html>
