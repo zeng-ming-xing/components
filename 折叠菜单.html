@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/js/jquery-3.4.1.js"></script>
+     <style>
+         .example{
+             width: 200px;
+             height: 200px;
+             background-color: blue;
+             display: none;
+         }
+     </style>
+</head>
+<body>
+    <button>淡出</button>
+    <button>淡入</button>
+    <button>切换</button>
+    <button>淡入到</button>
+    <div class="example"></div>
+    <script>
+        $(function(){
+            $('button').eq(0).click(function(){
+                $('.example').fadeIn(1000,function(){
+                    alert('淡出成功');
+                })
+            })
+        
+        $('button').eq(1).click(function(){
+                $('.example').fadeOut(1000,function(){
+                    alert('淡出成功');
+                })
+            })
+        
+        $('button').eq(2).click(function(){
+                $('.example').fadeToggle(1000,function(){
+                    alert('淡出成功');
+                })
+            })
+        
+        $('button').eq(3).click(function(){
+                $('.example').fadeTo(1000,0.5,function(){
+                    alert('淡出成功');
+                })
+            })
+        }
+        )
+    </script>
+</body>
+</html>

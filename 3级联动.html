@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: darkgray;
+            width: 600px;
+            margin: 0 auto;
+            height: 50px;
+        }
+        
+        #main input {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <input type="text" list="list" placeholder="请选择省" class="getshi">
+        <datalist id="list">            
+        </datalist>
+        <input type="text" list="list1" placeholder="请选择市" class="getxian">
+        <datalist id="list1"></datalist>
+        <input type="text" list="list2" placeholder="请选择县" class="xian">
+        <datalist id="list2"></datalist> </div>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script>
+        window.onload = function() {
+            $.ajax({
+                url: "/ajax/connet_ser",
+                data: {
+                    "level": "1"
+                },
+                dataType: "json",
+                success: (res) => {
+                    console.log(res);
+                    for (let i in res) {
+                        $("#main #list").append("<option>" + res[i].name + "</option>");
+                    }
+                }
+            })
+
+            $("#main .getshi").on("change", () => {
+                if ($("#main .getshi").val() == "") {
+                    $("#main .getxian").val("");
+                }
+                var a = $("#main .getshi").val();
+                $("#main #list1>option").remove();
+                $.ajax({
+                    url: "/ajax/connet_ser",
+                    data: {
+                        "level": "2",
+                        "parent": a
+                    },
+                    dataType: "json",
+                    success: (res) => {
+                        console.log(res);
+                        for (let i in res) {
+                            $("#main #list1").append("<option>" + res[i].name + "</option>");
+                        }
+                    }
+                })
+            })
+            $("#main .getxian").on("change", () => {
+                if ($("#main .getxian").val() == "") {
+                    $("#main .xian").val("");
+                }
+                var a = $("#main .getxian").val();
+                $("#main #list2>option").remove();
+                $.ajax({
+                    url: "/ajax/connet_ser",
+                    data: {
+                        "level": "3",
+                        "parent": a
+                    },
+                    dataType: "json",
+                    success: (res) => {
+                        console.log(res);
+                        for (let i in res) {
+                            $("#main #list2").append("<option>" + res[i].name + "</option>");
+                        }
+                    }
+                })
+            })
+        }
+    </script>
+</body>
+
+</html>

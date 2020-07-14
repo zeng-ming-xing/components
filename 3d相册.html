@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/3d.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color:  black;
+        }
+        .per{
+            perspective: 1100px;
+        }
+        .per .p-continer{
+            width: 180px;
+            height: 250px; 
+            margin: 200px auto;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-10deg) rotateY(0deg);
+                    
+        }
+        .p-continer img{
+            width: 180px;
+            height: 250px;
+            background-color: white;
+            top: 0;
+            position: absolute;
+            transform: rotateX(0deg) rotateY(0deg);
+            -webkit-box-reflect:below 8px -webkit-linear-gradient(top,rgba(0,0,0,0) 40%,rgba(0,0,0,.7) 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="per">
+        <div  class="p-continer">
+            <img src="/img/7.jpg" alt="">
+            <img src="/img/1.jpg" alt="">
+            <img src="/img/3.jpg" alt="">
+            <img src="/img/8.jpg" alt="">
+            <img src="/img/9.jpg" alt="">
+            <img src="/img/2.jpg" alt="">
+            <img src="/img/6.jpg" alt="">
+            <img src="/img/5.jpg" alt="">
+            <img src="/img/4.jpg" alt="">
+        </div>
+    </div>
+</body>
+</html>
