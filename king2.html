@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/js/jquery-3.4.1.js"></script>
+    <style>
+        *{
+            padding: 0;
+        margin: 0; 
+        }
+        div{
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+        }
+        div>ul{
+        width: 1200px;
+        height: 100%;
+        list-style: none;
+        }
+        div>ul>li{
+           float: left;
+           width: 300px;
+           height: 100%;
+        }
+        .nav1>ul>li>img{
+            width: 100%;
+            height: 100%;
+        }
+        .continer{
+            width: 300px;
+            height: 250px;
+        }
+        .continer .nav {
+            width: 100%;
+            height: 50px;  
+        }
+        .continer .nav li{
+            width: 75px;
+            line-height: 50px;
+            background-color: chocolate;
+            text-align: center;
+        }
+        .continer .nav li:hover{
+            background-color: coral;
+        }
+    </style>
+</head>
+<body>
+<div class="continer">
+    <div class="nav1">
+        <ul>
+            <li><img src="/img/banner1.jpeg" alt=""></li>
+            <li><img src="/img/banner3.jpeg" alt=""></li>
+            <li><img src="/img/banner4.jpeg" alt=""></li>
+            <li class="last"><img src="/img/banner5.jpeg" alt=""></li>
+        </ul>
+    </div>
+    <div class="nav">
+        <ul>
+            <li>第一张</li>
+            <li>第二张</li>
+            <li>第三张</li>
+            <li>第四张</li>
+        </ul>
+    </div>   
+</div>
+<script>
+    $(function(){
+        var offset=0;
+        var timer=setInterval(function(){
+            offset+=-300;
+            if(offset<=-1200)
+            {
+                offset=0
+            $('.continer>.nav1>ul').animate({marginLeft:offset},1000,function(){})
+            }
+            $('.continer>.nav1>ul').animate({marginLeft:offset},500,function(){})
+    },5000)
+    $('.continer>.nav>ul>li').mouseenter(
+        function(){
+            var index=$(this).index();
+            $('.continer>.nav1>ul').stop();
+            $('.continer>.nav1>ul').animate({marginLeft:index*-300},1000,function(){})   
+        }
+    )
+})
+</script>
+</body>
+</html>
